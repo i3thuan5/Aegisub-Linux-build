@@ -33,3 +33,11 @@ RUN apt-get install -y \
   libfreetype6-dev libfontconfig1-dev libass-dev \
   libffms2-dev libuchardet-dev libfftw3-dev \
   libice-dev
+RUN apt-get install -y git
+RUN git clone https://github.com/Aegisub/Aegisub.git /Aegisub
+WORKDIR /Aegisub
+RUN apt-get install -y autopoint
+RUN ./autogen.sh
+RUN ./configure
+RUN make -j 2
+
